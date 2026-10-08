@@ -1,0 +1,15 @@
+{
+  "name": "erp-mern-project",
+  "version": "1.0.0",
+  "description": "A MERN-based Enterprise Resource Planning (ERP) system for managing business operations.",
+  "license": "ISC",
+  "author": "Joshua Meguiso",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.5"
+  }
+}
