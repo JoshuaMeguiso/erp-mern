@@ -1,7 +1,18 @@
-import { Layout, Input, Avatar, Flex, Breadcrumb, Space, Dropdown } from "antd";
+import {
+  Layout,
+  Input,
+  Avatar,
+  Flex,
+  Breadcrumb,
+  Space,
+  Dropdown,
+  theme as antdTheme,
+} from "antd";
+import { useTheme } from "../context/ThemeContext";
 import {
   SettingOutlined,
   SunOutlined,
+  MoonOutlined,
   FullscreenOutlined,
   BellOutlined,
   UserOutlined,
@@ -10,11 +21,21 @@ import {
 } from "@ant-design/icons";
 
 const HeaderLayout = () => {
+  const { isDark, toggleTheme } = useTheme();
+  const {
+    token: {
+      colorBgContainer,
+      colorBorderSecondary,
+      colorTextSecondary,
+      colorFillTertiary,
+    },
+  } = antdTheme.useToken();
+
   const headerStyle = {
-    background: "#fff",
-    borderBottom: "1px solid #f0f0f0",
+    background: colorBgContainer,
+    borderBottom: `1px solid ${colorBorderSecondary}`,
     padding: "0 24px",
-    height: 72,
+    height: 55,
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
@@ -25,7 +46,7 @@ const HeaderLayout = () => {
     display: "flex",
     alignItems: "center",
     gap: 8,
-    color: "#666",
+    color: colorTextSecondary,
     fontSize: 14,
     minWidth: 120,
   };
@@ -33,7 +54,7 @@ const HeaderLayout = () => {
   const actionButtonStyle = {
     border: "none",
     background: "transparent",
-    color: "#666",
+    color: colorTextSecondary,
     cursor: "pointer",
     fontSize: 18,
     width: 32,
@@ -58,13 +79,20 @@ const HeaderLayout = () => {
             style={{
               width: 220,
               borderRadius: 999,
+              color: colorTextSecondary,
             }}
           />
           <button type="button" aria-label="Settings" style={actionButtonStyle}>
             <SettingOutlined />
           </button>
-          <button type="button" aria-label="Theme" style={actionButtonStyle}>
-            <SunOutlined />
+          <button
+            type="button"
+            aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+            title={isDark ? "Light mode" : "Dark mode"}
+            onClick={toggleTheme}
+            style={actionButtonStyle}
+          >
+            {isDark ? <MoonOutlined /> : <SunOutlined />}
           </button>
           <button
             type="button"
@@ -89,7 +117,7 @@ const HeaderLayout = () => {
               gap: 10,
               padding: "4px 8px 4px 6px",
               borderRadius: 999,
-              background: "#f5f5f5",
+              background: colorFillTertiary,
             }}
           >
             {/* <div style={{ textAlign: "right", lineHeight: 1.2 }}>
