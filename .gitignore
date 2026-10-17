@@ -1,7 +1,6 @@
 #root document
 node_modules/
 package-lock.json
-.github/
 
 #client
 client/.env.local
